@@ -4,7 +4,7 @@ class APIConfig {
 
 class APIEndPoints {
   static String details(String movieId) {
-    return "http://www.omdbapi.com";
+    return "";
   }
   static String search(String query) {
     return "";
