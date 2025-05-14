@@ -1,6 +1,6 @@
 class AppStrings {
   // App-related
-  static const String appName = "MovieLens";
+  static const String appName = "Novie Search";
   static const String getStarted = "Get Started";
   static const String findYourMovie = "Find Your Movie";
   static const String back = "Back";

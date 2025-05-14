@@ -12,7 +12,6 @@ Widget networkImageWidget(String url, {double? width, double? height}) {
           height: height,
           decoration: BoxDecoration(
             image: DecorationImage(fit: BoxFit.cover, image: image),
-            borderRadius: BorderRadius.circular(10),
             color: AppColors.textgrey,
           ),
         ),
@@ -21,7 +20,6 @@ Widget networkImageWidget(String url, {double? width, double? height}) {
           width: width,
           height: height,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
             color: AppColors.textgrey,
           ),
           child: Center(child: const CircularProgressIndicator()),
@@ -35,7 +33,6 @@ Widget networkImageWidget(String url, {double? width, double? height}) {
               fit: BoxFit.cover,
               image: AssetImage(AppImages.noImage),
             ),
-            borderRadius: BorderRadius.circular(10),
             color: AppColors.textgrey,
           ),
         ),

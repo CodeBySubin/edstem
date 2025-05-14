@@ -5,6 +5,7 @@ import 'package:edstem/presentation/bloc/search/search_bloc.dart';
 import 'package:edstem/presentation/bloc/search/search_event.dart';
 import 'package:edstem/presentation/bloc/search/search_state.dart';
 import 'package:edstem/presentation/pages/search/widgets/empty_search.dart';
+import 'package:edstem/presentation/pages/search/widgets/searchField.dart';
 import 'package:edstem/presentation/pages/search/widgets/search_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -64,34 +65,8 @@ class _SearchState extends State<Search> {
             ),
             child: Column(
               children: [
-                TextFormField(
-                  controller: _controller,
-                  showCursor: true,
-                  cursorColor: AppColors.white,
-                  textInputAction: TextInputAction.search,
-                  keyboardType: TextInputType.text,
-                  style: const TextStyle(color: AppColors.white),
-                  decoration: InputDecoration(
-                    hintText: AppStrings.searchForMovies,
-                    prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 15,
-                      horizontal: 20,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide.none,
-                    ),
-                    fillColor: Colors.grey.shade800,
-                    filled: true,
-
-                    hintStyle: Theme.of(
-                      context,
-                    ).textTheme.titleMedium!.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.textgrey,
-                    ),
-                  ),
+               SearchField(
+                controller: _controller,
                   onChanged: (value) {
                     context.read<SearchBloc>().add(SearchTextChanged(value));
                   },

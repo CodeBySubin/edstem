@@ -1,6 +1,4 @@
-import 'dart:async';
 
-import 'package:edstem/core/constants/app_colors.dart';
 import 'package:edstem/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +10,6 @@ import 'package:edstem/presentation/pages/search/search.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await dotenv.load(fileName: '.env');
   await configureDependencies(); 
   runApp(const MyApp());

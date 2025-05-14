@@ -1,10 +1,12 @@
+import 'package:edstem/core/network/dio_exception.dart';
 import 'package:edstem/presentation/bloc/details/details_bloc.dart';
-import 'package:edstem/presentation/pages/details/widgets/details_body.dart';
-import 'package:edstem/presentation/pages/details/widgets/details_header.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:edstem/presentation/bloc/details/details_event.dart';
 import 'package:edstem/presentation/bloc/details/details_state.dart';
+import 'package:edstem/presentation/pages/details/widgets/details_body.dart';
+import 'package:edstem/presentation/pages/details/widgets/details_header.dart';
+import 'package:edstem/presentation/widgets/index.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetailsScreen extends StatefulWidget {
   final String id;
@@ -28,29 +30,26 @@ class _DetailsScreenState extends State<DetailsScreen> {
       backgroundColor: Colors.black,
       body: BlocBuilder<MovieDetailBloc, MovieDetailState>(
         builder: (context, state) {
-          if (state is MovieDetailLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is MovieDetailError) {
-            return Center(
-              child: Text(
-                state.message,
-                style: const TextStyle(color: Colors.white),
-              ),
-            );
-          } else if (state is MovieDetailLoaded) {
-            final detail = state.detail;
-            return CustomScrollView(
-              slivers: [
-                DetailsHeader(detail: detail),
-                DetailsBody(detail: detail),
-              ],
-            );
-          } else {
-            return const SizedBox.shrink();
-          }
+          return BaseStateWidget(
+            isLoading: state is MovieDetailLoading,
+            errorMessage: state is MovieDetailError
+                ? AppError(message: state.message)
+                : null,
+            content: () {
+              if (state is MovieDetailLoaded) {
+                final detail = state.detail;
+                return CustomScrollView(
+                  slivers: [
+                    DetailsHeader(detail: detail),
+                    DetailsBody(detail: detail),
+                  ],
+                );
+              }
+              return const SizedBox.shrink();
+            },
+          );
         },
       ),
     );
   }
-
 }

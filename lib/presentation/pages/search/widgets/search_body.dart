@@ -29,30 +29,39 @@ class SearchBody extends StatelessWidget {
   }
 
   Widget _buildMovieListItem(Movie movies, BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      elevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      color: Colors.grey.shade900,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(12),
-        onTap:
-            () => Navigator.push(
+    final screenHeight = MediaQuery.of(context).size.height;
+    final cardHeight = screenHeight * 0.26; 
+    return SizedBox(
+      height: cardHeight,
+      child: Card(
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        elevation: 0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        color: Colors.grey.shade900,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(12),
+          onTap: () {
+            Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => DetailsScreen(id: movies.imdbID),
               ),
-            ),
-        child: IntrinsicHeight(
+            );
+          },
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               ClipRRect(
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(12),
                   bottomLeft: Radius.circular(12),
+                  topRight: Radius.circular(0),
+                  bottomRight: Radius.circular(0),
                 ),
-                child: networkImageWidget(movies.poster, width: 120),
+                child: networkImageWidget(
+                  movies.poster,
+                  width: 120,
+                  height: double.infinity,
+                ),
               ),
               Expanded(
                 child: Padding(
@@ -60,17 +69,15 @@ class SearchBody extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Flexible(
-                        child: Text(
-                          movies.title,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.titleMedium?.copyWith(
-                            color: AppColors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      Text(
+                        movies.title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleMedium?.copyWith(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -95,7 +102,6 @@ class SearchBody extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 20),
                       const Spacer(),
                       Align(
                         alignment: Alignment.bottomRight,
