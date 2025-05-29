@@ -2,11 +2,11 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:edstem/domain/entities/movie.dart';
-import 'package:edstem/domain/usecases/search_movies.dart';
-import 'package:edstem/presentation/bloc/search/search_bloc.dart';
-import 'package:edstem/presentation/bloc/search/search_event.dart';
-import 'package:edstem/presentation/bloc/search/search_state.dart';
+import 'package:edstem/features/search/domain/entities/movie.dart';
+import 'package:edstem/features/search/domain/usecases/search_movies.dart';
+import 'package:edstem/features/search/presentation/bloc/search/search_bloc.dart';
+import 'package:edstem/features/search/presentation/bloc/search/search_event.dart';
+import 'package:edstem/features/search/presentation/bloc/search/search_state.dart';
 
 class MockFetchMovies extends Mock implements FetchMovies {}
 

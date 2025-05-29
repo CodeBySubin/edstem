@@ -1,15 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:edstem/core/network/api_endpoint.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ApiClient {
-  static final ApiClient _instance = ApiClient._internal();
   late final Dio _dio;
   // final String? _token = dotenv.env['API_KEY'];
 
-  /// **Private Constructor (Singleton Pattern)**
-  ApiClient._internal() {
+  ApiClient() {
     _dio = Dio(
       BaseOptions(
         baseUrl: APIConfig.baseURL,
@@ -49,8 +46,6 @@ class ApiClient {
     );
   }
 
-  /// **Public factory constructor**
-  factory ApiClient() => _instance;
 
   /// **GET Request**
   Future<Response> get(String endpoint, {Map<String, dynamic>? params}) async {
